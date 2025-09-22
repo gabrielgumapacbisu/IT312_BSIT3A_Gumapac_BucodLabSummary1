@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caesar Cipher Encryption & Decryption</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+        label {
+            margin-top: 10px;
+            display: block;
+        }
+        input, button {
+            margin: 5px 0;
+            padding: 10px;
+            font-size: 16px;
+        }
+        #output {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Caesar Cipher Encryption & Decryption</h1>
+
+    <label for="plaintext">Enter Plaintext:</label>
+    <input type="text" id="plaintext" placeholder="Enter text to encrypt">
+
+    <label for="shift">Enter Shift Key (Integer):</label>
+    <input type="number" id="shift" placeholder="Shift key">
+
+    <button onclick="encrypt()">Encrypt</button>
+    <button onclick="decrypt()">Decrypt</button>
+
+    <div id="output">
+        <h3>Encrypted Text:</h3>
+        <p id="encryptedText"></p>
+
+        <h3>Decrypted Text:</h3>
+        <p id="decryptedText"></p>
+    </div>
+
+    <script>
+        // Encrypt function for Caesar Cipher
+        function encrypt() {
+            let plaintext = document.getElementById('plaintext').value;
+            let shift = parseInt(document.getElementById('shift').value);
+            let ciphertext = "";
+            
+            for (let i = 0; i < plaintext.length; i++) {
+                let char = plaintext[i];
+
+                if (/[a-z]/.test(char)) { // For lowercase letters
+                    ciphertext += String.fromCharCode((char.charCodeAt(0) - 97 + shift) % 26 + 97);
+                } else if (/[A-Z]/.test(char)) { // For uppercase letters
+                    ciphertext += String.fromCharCode((char.charCodeAt(0) - 65 + shift) % 26 + 65);
+                } else { // Non-alphabetic characters remain unchanged
+                    ciphertext += char;
+                }
+            }
+
+            document.getElementById('encryptedText').textContent = ciphertext;
+        }
+
+        // Decrypt function for Caesar Cipher
+        function decrypt() {
+            let ciphertext = document.getElementById('plaintext').value;
+            let shift = parseInt(document.getElementById('shift').value);
+            let plaintext = "";
+
+            for (let i = 0; i < ciphertext.length; i++) {
+                let char = ciphertext[i];
+
+                if (/[a-z]/.test(char)) { // For lowercase letters
+                    plaintext += String.fromCharCode((char.charCodeAt(0) - 97 - shift + 26) % 26 + 97);
+                } else if (/[A-Z]/.test(char)) { // For uppercase letters
+                    plaintext += String.fromCharCode((char.charCodeAt(0) - 65 - shift + 26) % 26 + 65);
+                } else { // Non-alphabetic characters remain unchanged
+                    plaintext += char;
+                }
+            }
+
+            document.getElementById('decryptedText').textContent = plaintext;
+        }
+    </script>
+</body>
+</html>
