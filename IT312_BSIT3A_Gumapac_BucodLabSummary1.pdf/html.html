@@ -44,7 +44,7 @@
     </div>
 
     <script>
-        // Encrypt function for Caesar Cipher
+        
         function encrypt() {
             let plaintext = document.getElementById('plaintext').value;
             let shift = parseInt(document.getElementById('shift').value);
@@ -53,11 +53,11 @@
             for (let i = 0; i < plaintext.length; i++) {
                 let char = plaintext[i];
 
-                if (/[a-z]/.test(char)) { // For lowercase letters
+                if (/[a-z]/.test(char)) { 
                     ciphertext += String.fromCharCode((char.charCodeAt(0) - 97 + shift) % 26 + 97);
-                } else if (/[A-Z]/.test(char)) { // For uppercase letters
+                } else if (/[A-Z]/.test(char)) {
                     ciphertext += String.fromCharCode((char.charCodeAt(0) - 65 + shift) % 26 + 65);
-                } else { // Non-alphabetic characters remain unchanged
+                } else { 
                     ciphertext += char;
                 }
             }
@@ -65,7 +65,7 @@
             document.getElementById('encryptedText').textContent = ciphertext;
         }
 
-        // Decrypt function for Caesar Cipher
+     
         function decrypt() {
             let ciphertext = document.getElementById('plaintext').value;
             let shift = parseInt(document.getElementById('shift').value);
@@ -74,11 +74,11 @@
             for (let i = 0; i < ciphertext.length; i++) {
                 let char = ciphertext[i];
 
-                if (/[a-z]/.test(char)) { // For lowercase letters
+                if (/[a-z]/.test(char)) { 
                     plaintext += String.fromCharCode((char.charCodeAt(0) - 97 - shift + 26) % 26 + 97);
-                } else if (/[A-Z]/.test(char)) { // For uppercase letters
+                } else if (/[A-Z]/.test(char)) { 
                     plaintext += String.fromCharCode((char.charCodeAt(0) - 65 - shift + 26) % 26 + 65);
-                } else { // Non-alphabetic characters remain unchanged
+                } else { 
                     plaintext += char;
                 }
             }
@@ -88,3 +88,4 @@
     </script>
 </body>
 </html>
+
